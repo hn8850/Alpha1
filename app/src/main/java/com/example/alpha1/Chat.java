@@ -1,10 +1,12 @@
 package com.example.alpha1;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +32,9 @@ public class Chat extends AppCompatActivity {
     DatabaseReference chatRoot;
     String Email, message, time;
     FirebaseUser user;
+    ScrollView scrollView;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,7 @@ public class Chat extends AppCompatActivity {
         chatEt = findViewById(R.id.chatEt);
         currUser = findViewById(R.id.UserStatus);
         chatBox = findViewById(R.id.message);
+        scrollView = findViewById(R.id.scroll);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) currUser.setText("STATUS: The current user is " + user.getEmail());
@@ -77,16 +82,22 @@ public class Chat extends AppCompatActivity {
     }
 
     public void readChat(DataSnapshot snapshot) {
-        Iterator i = snapshot.getChildren().iterator();
+        Iterator<DataSnapshot> i = snapshot.getChildren().iterator();
         String name = "";
         while (i.hasNext()) {
             message = (String) ((DataSnapshot) i.next()).getValue();
             time = (String) ((DataSnapshot) i.next()).getValue();
             Email = (String) ((DataSnapshot) i.next()).getValue();
-            name = Email.substring(0,Email.indexOf("@"));
+            name = Email.substring(0, Email.indexOf("@"));
 
         }
         chatBox.append(name + ": " + message + " -- " + time + " \n" + " \n");
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
 
     }
 
@@ -104,13 +115,20 @@ public class Chat extends AppCompatActivity {
             Email = user.getEmail();
             message = chatEt.getText().toString();
             Calendar now = Calendar.getInstance();
-            if (("" + now.get(Calendar.MINUTE)).length()==1) time = now.get(Calendar.HOUR_OF_DAY) + ":0" + now.get(Calendar.MINUTE);
+            if (("" + now.get(Calendar.MINUTE)).length() == 1)
+                time = now.get(Calendar.HOUR_OF_DAY) + ":0" + now.get(Calendar.MINUTE);
             else time = now.get(Calendar.HOUR_OF_DAY) + ":" + now.get(Calendar.MINUTE);
 
             ChatLog upload = new ChatLog(Email, message, time);
             chatRoot.child((System.currentTimeMillis() + "").trim()).setValue(upload);
             Toast.makeText(this, "Message Sent!", Toast.LENGTH_SHORT).show();
             chatEt.setText("");
+            scrollView.post(new Runnable() {
+                @Override
+                public void run() {
+                    scrollView.fullScroll(View.FOCUS_DOWN);
+                }
+            });
         }
     }
 

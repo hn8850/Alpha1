@@ -7,7 +7,6 @@ public class ChatLog {
 
     public ChatLog() {
         // Empty Constructor
-
     }
 
     public ChatLog(String USER_NAME, String MESSAGE,String TIME) {
