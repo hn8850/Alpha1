@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,8 +48,8 @@ public class login1 extends AppCompatActivity {
     }
 
     public void loginUser(){
-        String email = etLoginEmail.getText().toString();
-        String password = etLoginPassword.getText().toString();
+        String email = etLoginEmail.getText().toString().trim();
+        String password = etLoginPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)){
             etLoginEmail.setError("Email cannot be empty");
@@ -68,5 +70,49 @@ public class login1 extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        String st = item.getTitle().toString();
+
+        if (st.equals("Login")) {
+            Toast.makeText(this, "You're in this Activity!!", Toast.LENGTH_SHORT).show();
+        }
+        if (st.equals("Chat")){
+            Intent si = new Intent(this, Chat.class);
+            startActivity(si);
+        }
+        /*
+        if (st.equals("Activity 5")){
+            Intent si = new Intent(this, activity_5.class);
+            startActivity(si);
+        }
+        if (st.equals("Activity 6")){
+            Intent si = new Intent(this, activity_6.class);
+            startActivity(si);
+        }
+        if (st.equals("Activity 7")){
+            Intent si = new Intent(this, activity_7.class);
+            startActivity(si);
+        }
+ */
+
+        if (st.equals("Gallery")) {
+            Intent si = new Intent(this, activity_2.class);
+            startActivity(si);
+        }
+
+        if (st.equals("Camera")) {
+            Intent si = new Intent(this, activity_3.class);
+            startActivity(si);
+        }
+
+        return true;
     }
 }

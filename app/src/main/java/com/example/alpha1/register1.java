@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,8 +49,8 @@ public class register1 extends AppCompatActivity {
     }
 
     public void createUser() {
-        String email = etRegEmail.getText().toString();
-        String password = etRegPassword.getText().toString();
+        String email = etRegEmail.getText().toString().trim();
+        String password = etRegPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
             etRegEmail.setError("Email cannot be empty");
@@ -70,4 +72,5 @@ public class register1 extends AppCompatActivity {
             });
         }
     }
-}
+
+    }

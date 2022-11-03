@@ -213,15 +213,16 @@ public class activity_3 extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         String st = item.getTitle().toString();
-/*
-        if (st.equals("Activity 1")){
-            Intent si = new Intent(this, activity_1.class);
+
+        if (st.equals("Login")) {
+            Intent si = new Intent(this, login1.class);
             startActivity(si);
         }
-        if (st.equals("Activity 4")){
-            Intent si = new Intent(this, activity_4.class);
+        if (st.equals("Chat")){
+            Intent si = new Intent(this, Chat.class);
             startActivity(si);
         }
+        /*
         if (st.equals("Activity 5")){
             Intent si = new Intent(this, activity_5.class);
             startActivity(si);
@@ -236,14 +237,13 @@ public class activity_3 extends AppCompatActivity {
         }
  */
 
-        if (st.equals("Activity 2")) {
-            Toast.makeText(this, "You're in this Activity!!", Toast.LENGTH_SHORT).show();
+        if (st.equals("Gallery")) {
+            Intent si = new Intent(this, activity_2.class);
+            startActivity(si);
         }
 
-
-        if (st.equals("Activity 3")) {
-            Intent si = new Intent(this, activity_3.class);
-            startActivity(si);
+        if (st.equals("Camera")) {
+            Toast.makeText(this, "You're in this Activity!!", Toast.LENGTH_SHORT).show();
         }
 
         return true;
