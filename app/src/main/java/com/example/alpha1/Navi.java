@@ -1,33 +1,32 @@
 package com.example.alpha1;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.google.android.gms.maps.CameraUpdate;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+
+import com.example.alpha1.databinding.ActivityNaviBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.alpha1.databinding.ActivityNaviBinding;
 
 import java.util.List;
 
+
+/**
+ * MIGHT BE USEFUL IN LATER VERSIONS. CURRENT MAP ACTIVITY IS mapa.java
+ */
 public class Navi extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -59,7 +58,6 @@ public class Navi extends FragmentActivity implements OnMapReadyCallback {
         mMap = googleMap;
         animateCamera();
     }
-
 
 
     private void animateCamera() {

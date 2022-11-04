@@ -109,7 +109,7 @@ public class login1 extends AppCompatActivity {
         }
          */
         if (st.equals("Maps")){
-            Intent si = new Intent(this, Navi.class);
+            Intent si = new Intent(this, mapa.class);
             startActivity(si);
         }
 
