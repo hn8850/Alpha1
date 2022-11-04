@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ScrollView;
@@ -152,6 +154,48 @@ public class Chat extends AppCompatActivity {
         AlertDialog ad = adb.create();
         ad.show();
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        String st = item.getTitle().toString();
+
+        if (st.equals("Login")) {
+            Intent si = new Intent(this, login1.class);
+            startActivity(si);
+        }
+
+        if (st.equals("Gallery")) {
+            Intent si = new Intent(this, activity_2.class);
+            startActivity(si);
+        }
+
+        if (st.equals("Camera")) {
+            Intent si = new Intent(this, activity_3.class);
+            startActivity(si);
+        }
+
+        if (st.equals("Chat")){
+            Toast.makeText(this, "You're in this Activity!!", Toast.LENGTH_SHORT).show();
+        }
+        if (st.equals("Notifications")){
+            Intent si = new Intent(this, notifs.class);
+            startActivity(si);
+        }
+        /*
+        if (st.equals("Activity 6")){
+            Intent si = new Intent(this, activity_6.class);
+            startActivity(si);
+        }
+        if (st.equals("Activity 7")){
+            Intent si = new Intent(this, activity_7.class);
+            startActivity(si);
+        }
+ */
+        return true;
+    }
 
 }

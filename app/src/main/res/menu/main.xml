@@ -5,10 +5,10 @@
     <item android:title="Gallery" />
     <item android:title="Camera" />
     <item android:title="Chat" />
-    <item android:title="Activity 5" />
+    <item android:title="Notifications" />
     <item android:title="Activity 6" />
 
-    <item android:title="Activity 7" />
+    <item android:title="Maps" />
 
 
 </menu>

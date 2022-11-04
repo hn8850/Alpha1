@@ -178,15 +178,25 @@ public class activity_2 extends AppCompatActivity {
             startActivity(si);
         }
 
+        if (st.equals("Gallery")) {
+            Toast.makeText(this, "You're in this Activity!!", Toast.LENGTH_SHORT).show();
+        }
+
+        if (st.equals("Camera")) {
+            Intent si = new Intent(this, activity_3.class);
+            startActivity(si);
+        }
+
         if (st.equals("Chat")){
             Intent si = new Intent(this, Chat.class);
             startActivity(si);
         }
-        /*
-        if (st.equals("Activity 5")){
-            Intent si = new Intent(this, activity_5.class);
+
+        if (st.equals("Notifications")){
+            Intent si = new Intent(this, notifs.class);
             startActivity(si);
         }
+        /*
         if (st.equals("Activity 6")){
             Intent si = new Intent(this, activity_6.class);
             startActivity(si);
@@ -197,14 +207,7 @@ public class activity_2 extends AppCompatActivity {
         }
         */
 
-        if (st.equals("Gallery")) {
-            Toast.makeText(this, "You're in this Activity!!", Toast.LENGTH_SHORT).show();
-        }
 
-        if (st.equals("Camera")) {
-            Intent si = new Intent(this, activity_3.class);
-            startActivity(si);
-        }
 
         return true;
     }
