@@ -154,6 +154,7 @@ public class Chat extends AppCompatActivity {
         AlertDialog ad = adb.create();
         ad.show();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -181,20 +182,22 @@ public class Chat extends AppCompatActivity {
         if (st.equals("Chat")){
             Toast.makeText(this, "You're in this Activity!!", Toast.LENGTH_SHORT).show();
         }
+
         if (st.equals("Notifications")){
             Intent si = new Intent(this, notifs.class);
             startActivity(si);
         }
-        /*
-        if (st.equals("Activity 6")){
-            Intent si = new Intent(this, activity_6.class);
+
+        if (st.equals("Google Pay")) {
+            Intent si = new Intent(this, GooglePay.class);
             startActivity(si);
         }
-        if (st.equals("Activity 7")){
-            Intent si = new Intent(this, activity_7.class);
+
+        if (st.equals("Maps")) {
+            Intent si = new Intent(this, mapa.class);
             startActivity(si);
         }
- */
+
         return true;
     }
 

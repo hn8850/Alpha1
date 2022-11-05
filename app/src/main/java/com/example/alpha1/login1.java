@@ -42,29 +42,29 @@ public class login1 extends AppCompatActivity {
         btnLogin.setOnClickListener(view -> {
             loginUser();
         });
-        tvRegisterHere.setOnClickListener(view ->{
+        tvRegisterHere.setOnClickListener(view -> {
             startActivity(new Intent(login1.this, register1.class));
         });
     }
 
-    public void loginUser(){
+    public void loginUser() {
         String email = etLoginEmail.getText().toString().trim();
         String password = etLoginPassword.getText().toString().trim();
 
-        if (TextUtils.isEmpty(email)){
+        if (TextUtils.isEmpty(email)) {
             etLoginEmail.setError("Email cannot be empty");
             etLoginEmail.requestFocus();
-        }else if (TextUtils.isEmpty(password)){
+        } else if (TextUtils.isEmpty(password)) {
             etLoginPassword.setError("Password cannot be empty");
             etLoginPassword.requestFocus();
-        }else{
-            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        } else {
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Toast.makeText(login1.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(login1.this, activity_2.class));
-                    }else{
+                    } else {
                         Toast.makeText(login1.this, "Log in Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -94,21 +94,23 @@ public class login1 extends AppCompatActivity {
         if (st.equals("Login")) {
             Toast.makeText(this, "You're in this Activity!!", Toast.LENGTH_SHORT).show();
         }
-        if (st.equals("Chat")){
+
+        if (st.equals("Chat")) {
             Intent si = new Intent(this, Chat.class);
             startActivity(si);
         }
-        if (st.equals("Notifications")){
+
+        if (st.equals("Notifications")) {
             Intent si = new Intent(this, notifs.class);
             startActivity(si);
         }
-        /*
-        if (st.equals("Activity 6")){
-            Intent si = new Intent(this, activity_6.class);
+
+        if (st.equals("Google Pay")) {
+            Intent si = new Intent(this, GooglePay.class);
             startActivity(si);
         }
-         */
-        if (st.equals("Maps")){
+
+        if (st.equals("Maps")) {
             Intent si = new Intent(this, mapa.class);
             startActivity(si);
         }

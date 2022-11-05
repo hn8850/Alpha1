@@ -132,11 +132,6 @@ public class notifs extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         String st = item.getTitle().toString();
 
-        if (st.equals("Login")) {
-            Intent si = new Intent(this, login1.class);
-            startActivity(si);
-        }
-
         if (st.equals("Gallery")) {
             Intent si = new Intent(this, activity_2.class);
             startActivity(si);
@@ -144,6 +139,11 @@ public class notifs extends AppCompatActivity {
 
         if (st.equals("Camera")) {
             Intent si = new Intent(this, activity_3.class);
+            startActivity(si);
+        }
+
+        if (st.equals("Login")) {
+            Intent si = new Intent(this, login1.class);
             startActivity(si);
         }
 
@@ -155,17 +155,17 @@ public class notifs extends AppCompatActivity {
             Toast.makeText(this, "You're in this Activity!!", Toast.LENGTH_SHORT).show();
 
         }
-        /*
-        if (st.equals("Activity 6")){
-            Intent si = new Intent(this, activity_6.class);
+
+        if (st.equals("Google Pay")) {
+            Intent si = new Intent(this, GooglePay.class);
             startActivity(si);
         }
-        if (st.equals("Activity 7")){
-            Intent si = new Intent(this, activity_7.class);
+
+        if (st.equals("Maps")) {
+            Intent si = new Intent(this, mapa.class);
             startActivity(si);
         }
- */
+
         return true;
     }
-
 }

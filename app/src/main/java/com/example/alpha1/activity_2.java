@@ -196,18 +196,16 @@ public class activity_2 extends AppCompatActivity {
             Intent si = new Intent(this, notifs.class);
             startActivity(si);
         }
-        /*
-        if (st.equals("Activity 6")){
-            Intent si = new Intent(this, activity_6.class);
+
+        if (st.equals("Google Pay")) {
+            Intent si = new Intent(this, GooglePay.class);
             startActivity(si);
         }
-        if (st.equals("Activity 7")){
-            Intent si = new Intent(this, activity_7.class);
+
+        if (st.equals("Maps")) {
+            Intent si = new Intent(this, mapa.class);
             startActivity(si);
         }
-        */
-
-
 
         return true;
     }

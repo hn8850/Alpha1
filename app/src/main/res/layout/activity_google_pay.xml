@@ -7,5 +7,74 @@
     android:orientation="vertical"
     tools:context=".GooglePay">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:src="@drawable/logo" />
+
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="PAY"
+        android:textColor="#4CAF50"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/amountEditText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:hint="How much do you want to pay?"
+        android:inputType="numberDecimal"
+        android:minWidth="20dp"
+        android:textColorHint="#4CAF50"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@drawable/googlepay_button_background"
+        android:clickable="true"
+        android:contentDescription="@string/googlepay_button_content_description"
+        android:focusable="true"
+        android:padding="2sp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:duplicateParentState="true"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+
+            <ImageView
+                android:id="@+id/googlePayButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:duplicateParentState="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/googlepay_button_content" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:duplicateParentState="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/googlepay_button_overlay" />
+    </RelativeLayout>
 
 </LinearLayout>
