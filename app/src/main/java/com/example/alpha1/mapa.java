@@ -20,7 +20,7 @@ public class mapa extends AppCompatActivity {
     }
 
     public void navigo(View view) {
-        Intent si = new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=31.2676790,34.8109860"));
+        Intent si = new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=33.26927469984581, 35.772079052048966"));
         si.setPackage("com.google.android.apps.maps");
         if (si.resolveActivity(getPackageManager()) != null) {
             startActivity(si);
