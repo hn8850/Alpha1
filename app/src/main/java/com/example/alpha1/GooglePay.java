@@ -133,7 +133,7 @@ public class GooglePay extends AppCompatActivity {
         }
 
         if (st.equals("Maps")) {
-            Intent si = new Intent(this, mapa.class);
+            Intent si = new Intent(this, Navi.class);
             startActivity(si);
         }
 

@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +18,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,6 +38,9 @@ public class activity_2 extends AppCompatActivity {
     ImageView pic;
     ProgressBar prog;
     EditText nameOfPic;
+    TextView status;
+    String name;
+    boolean uploaded;
 
     Uri imageUri;
     StorageReference storageRef;
@@ -48,6 +54,7 @@ public class activity_2 extends AppCompatActivity {
         pic = findViewById(R.id.FBpic);
         prog = findViewById(R.id.prog2);
         nameOfPic = findViewById(R.id.namePic);
+        status = findViewById(R.id.status);
 
         storageRef = FirebaseStorage.getInstance().getReference("uploads");
         fbRef = FirebaseDatabase.getInstance().getReference("uploads");
@@ -68,11 +75,16 @@ public class activity_2 extends AppCompatActivity {
      * @param view
      */
     public void upload(View view) {
-        if (uploadTask != null && uploadTask.isInProgress()) {
-            Toast.makeText(this, "Upload in Progress!!", Toast.LENGTH_SHORT).show();
+        if (nameOfPic.getText().toString().equals("")) {
+            Toast.makeText(this, "Enter a name for the file!!", Toast.LENGTH_SHORT).show();
         } else {
-            uploadFile();
+            if (uploadTask != null && uploadTask.isInProgress()) {
+                Toast.makeText(this, "Upload in Progress!!", Toast.LENGTH_SHORT).show();
+            } else {
+                uploadFile();
+            }
         }
+
 
     }
 
@@ -93,6 +105,8 @@ public class activity_2 extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
             pic.setImageURI(imageUri);
+            status.setText("IMAGE TO BE UPLOADED");
+
         }
     }
 
@@ -115,7 +129,8 @@ public class activity_2 extends AppCompatActivity {
      */
     public void uploadFile() {
         if (imageUri != null) {
-            StorageReference fileRef = storageRef.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
+            name = nameOfPic.getText().toString() + "." + getFileExtension(imageUri);
+            StorageReference fileRef = storageRef.child(name);
             uploadTask = fileRef.putFile(imageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -137,12 +152,12 @@ public class activity_2 extends AppCompatActivity {
                                             String imageUrl = uri.toString();
                                             Upload upload = new Upload(nameOfPic.getText().toString().toLowerCase(),
                                                     imageUrl);
-                                            String uploadID = fbRef.push().getKey();
-                                            fbRef.child(uploadID).setValue(upload);
+                                            fbRef.child(fbRef.getKey()).setValue(upload);
                                         }
                                     });
                                 }
                             }
+
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -163,6 +178,29 @@ public class activity_2 extends AppCompatActivity {
         }
 
     }
+
+    public void readPic(View view) {
+        name = nameOfPic.getText().toString();
+        try {
+            StorageReference picRef = storageRef.child(name);
+            long MAXBYTES = 1024 * 1024;
+            picRef.getBytes(MAXBYTES).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    pic.setImageBitmap(bitmap);
+                    status.setText("IMAGE FROM DATABASE");
+                    Toast.makeText(activity_2.this, "DOWNLOAD Successful", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (Exception e) {
+            Toast.makeText(this, "No picture with that Name!", Toast.LENGTH_SHORT).show();
+            pic.setImageResource(0);
+        }
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -187,12 +225,12 @@ public class activity_2 extends AppCompatActivity {
             startActivity(si);
         }
 
-        if (st.equals("Chat")){
+        if (st.equals("Chat")) {
             Intent si = new Intent(this, Chat.class);
             startActivity(si);
         }
 
-        if (st.equals("Notifications")){
+        if (st.equals("Notifications")) {
             Intent si = new Intent(this, notifs.class);
             startActivity(si);
         }
@@ -209,4 +247,6 @@ public class activity_2 extends AppCompatActivity {
 
         return true;
     }
+
+
 }
